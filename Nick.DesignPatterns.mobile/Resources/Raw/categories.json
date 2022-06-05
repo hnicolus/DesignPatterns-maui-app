@@ -1,0 +1,20 @@
+[
+	{
+		"id": 1,
+		"title": "Creational Patterns",
+		"description": "The creational patterns aim to separate a system from how its objects are created, composed, and represented.They increase the system's flexibility in terms of the what, who, how, and when of object creation.",
+		"icon": "builder"
+	},
+	{
+		"id": 2,
+		"title": "Structural Patterns",
+		"description": "Structural design patterns are design patterns that simplify the design by identifying a simple way to realize relationships among entities",
+		"icon": "flyweight"
+	},
+	{
+		"id": 3,
+		"title": "Behavioral Patterns",
+		"description": "behavioral design patterns are design patterns that identify common communication patterns among objects. By doing so, these patterns increase flexibility in carrying out communication",
+		"icon": "visitor"
+	}
+]
