@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DesignPatterns.Views.PatternDetailPage"
+             xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
+             xmlns:models="clr-namespace:DesignPatterns.Models"
+             x:DataType="viewmodels:PatternDetailPageViewModel"
+             Title="{Binding Pattern.Name}"
+             >
+    <ScrollView Padding="10">
+      <StackLayout x:DataType="models:Pattern">
+            <Label Text="{Binding  Name}"/>
+            <Label Text="{Binding Description}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+

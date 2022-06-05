@@ -1,0 +1,10 @@
+{
+    "configurations": [
+    {
+        "name": "Debug",
+        "type": "comet",
+        "request": "launch",
+        "preLaunchTask": "comet: Build"
+    }
+    ]
+}

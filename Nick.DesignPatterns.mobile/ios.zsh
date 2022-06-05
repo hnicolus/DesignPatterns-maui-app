@@ -1,0 +1,1 @@
+dotnet build -t:Run -f net6.0-ios -p:_DeviceName=:v2:udid=E2604BDB-164D-4A89-A57A-7CFFBF31E9EA -c Debug
