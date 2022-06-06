@@ -3,11 +3,12 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DesignPatterns.Models;
 using DesignPatterns.Services;
+using DesignPatterns.Views;
 
 namespace DesignPatterns.ViewModels
 {
-	public partial class PatternsPageViewModel:ObservableObject
-	{
+    public partial class PatternsPageViewModel : ObservableObject
+    {
         private readonly IDesignPatternsService designPatternsService;
 
         [ObservableProperty]
@@ -21,9 +22,13 @@ namespace DesignPatterns.ViewModels
         }
 
         [ICommand]
-        public async Task ShowDetails(int patternId)
+        public async Task ShowDetails(Pattern pattern)
         {
-            await Shell.Current.GoToAsync($"patterns/detail?patternId={patternId}");
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { "Pattern", pattern }
+            };
+            await Shell.Current.GoToAsync($"{nameof(PatternDetailPage)}",navigationParameter);
         }
         public async Task LoadPatternsAsync(int categoryId)
         {

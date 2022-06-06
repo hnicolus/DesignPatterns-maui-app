@@ -13,7 +13,8 @@
             x:Name="categoriesCollection"
             ItemsSource="{Binding Patterns}"
             ItemSizingStrategy="MeasureAllItems"
-            SelectionMode="None"
+             SelectionMode="Single"
+             SelectionChanged="OnCollectionViewSelectionChanged"
             >
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
@@ -23,12 +24,6 @@
                     <ContentView
                         x:DataType="models:Pattern" Padding="0" >
                         <Frame Padding="14,6,14,0">
-                            <Frame.GestureRecognizers>
-                                <ClickGestureRecognizer
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:PatternsPageViewModel}}, Path=ShowDetailsCommand}"
-                                    CommandParameter="{Binding Id}"
-                                    />
-                            </Frame.GestureRecognizers>
                         <Grid  ColumnDefinitions="*,*" RowDefinitions="60">
                             <Label
                                 Text="{Binding Name}"

@@ -20,6 +20,10 @@ public static class MauiProgram
         builder.Services.AddSingleton<IDesignPatternsService, DesignPatternsService>();
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<PatternsPage>();
+        builder.Services.AddSingleton<PatternDetailPage>();
+        builder.Services.AddSingleton<AboutPage>();
+        builder.Services.AddSingleton<AboutPageViewModel>();
+        builder.Services.AddSingleton<PatternDetailPageViewModel>();
         builder.Services.AddSingleton<PatternsPageViewModel>();
         builder.Services.AddSingleton<HomePageViewModel>();
 

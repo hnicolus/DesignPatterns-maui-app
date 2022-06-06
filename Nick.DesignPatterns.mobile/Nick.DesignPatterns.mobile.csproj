@@ -43,15 +43,14 @@
 
 	<ItemGroup>
 	  <None Remove="Models\" />
-	  <None Remove="Data\" />
 	  <None Remove="ViewModels\" />
 	  <None Remove="Views\" />
 	  <None Remove="Services\" />
 	  <None Remove="CommunityToolkit.Mvvm" />
+	  <None Remove="Microsoft.Maui.Graphics.Text.Markdig" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
-	  <Folder Include="Data\" />
 	  <Folder Include="ViewModels\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Services\" />
@@ -69,8 +68,12 @@
 	  <MauiXaml Update="Views\PatternsPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\AboutPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+	  <PackageReference Include="Microsoft.Maui.Graphics.Text.Markdig" Version="6.0.300" />
 	</ItemGroup>
 </Project>

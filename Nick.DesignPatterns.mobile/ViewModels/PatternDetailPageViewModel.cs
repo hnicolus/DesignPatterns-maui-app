@@ -7,9 +7,10 @@ using DesignPatterns.Services;
 
 namespace DesignPatterns.ViewModels
 {
-	public partial class PatternDetailPageViewModel : ObservableObject
+	public partial class PatternDetailPageViewModel : ObservableObject, IQueryAttributable
 	{
         private readonly IDesignPatternsService designPatternsService;
+
         [ObservableProperty]
 		public Pattern pattern;
 
@@ -18,12 +19,10 @@ namespace DesignPatterns.ViewModels
             this.designPatternsService = designPatternsService;
         }
 
-   
-
-		public async Task LoadPatternAsync(int patternId)
+        public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-			Pattern = await designPatternsService.GetPatternAsync(patternId);
-		}
+            Pattern = query["Pattern"] as Pattern;
+        }
 	}
 }
 

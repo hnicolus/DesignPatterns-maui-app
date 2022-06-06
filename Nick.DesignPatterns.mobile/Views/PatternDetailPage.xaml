@@ -4,15 +4,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DesignPatterns.Views.PatternDetailPage"
              xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
-             xmlns:models="clr-namespace:DesignPatterns.Models"
              x:DataType="viewmodels:PatternDetailPageViewModel"
              Title="{Binding Pattern.Name}"
              >
-    <ScrollView Padding="10">
-      <StackLayout x:DataType="models:Pattern">
-            <Label Text="{Binding  Name}"/>
-            <Label Text="{Binding Description}"/>
-        </StackLayout>
+    <ScrollView >
+        <Grid Padding="12" RowDefinitions="Auto,*">
+            <Label FontSize="31"
+                   HorizontalOptions="CenterAndExpand"
+                   HorizontalTextAlignment="Center"
+                   Margin="10,20"
+                   Text="{Binding  Pattern.Name}"/>
+           <Label Grid.Row="1" Text="{Binding Pattern.Description}"/>
+        </Grid>
     </ScrollView>
 </ContentPage>
 
