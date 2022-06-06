@@ -9,10 +9,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>Nick.DesignPatterns.mobile</ApplicationTitle>
+		<ApplicationTitle>Design Patterns</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.nick.designpatterns.mobile</ApplicationId>
+		<ApplicationId>com.nicksoftware.designpatterns</ApplicationId>
 		<ApplicationId Condition="$(TargetFramework.Contains('-windows'))">948114C3-DA9B-4DC2-94C4-0A7AB676886A</ApplicationId>
 
 		<!-- Versions -->
