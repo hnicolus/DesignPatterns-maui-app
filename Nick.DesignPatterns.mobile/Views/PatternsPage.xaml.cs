@@ -3,7 +3,7 @@ using DesignPatterns.ViewModels;
 
 namespace DesignPatterns.Views
 {
-    [QueryProperty(nameof(CategoryId), "CategoryId")]
+    [QueryProperty(nameof(CategoryId), nameof(CategoryId))]
     public partial class PatternsPage : ContentPage
     {
         private int categoryId;
