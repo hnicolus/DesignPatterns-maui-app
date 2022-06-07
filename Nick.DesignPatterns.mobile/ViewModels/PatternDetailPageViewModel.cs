@@ -1,7 +1,5 @@
 ﻿
-using System;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using DesignPatterns.Models;
 using DesignPatterns.Services;
 
@@ -9,19 +7,19 @@ namespace DesignPatterns.ViewModels
 {
 	public partial class PatternDetailPageViewModel : ObservableObject, IQueryAttributable
 	{
-        private readonly IDesignPatternsService designPatternsService;
+        private readonly IDesignPatternsService _designPatternsService;
 
         [ObservableProperty]
-		public Pattern pattern;
+        private Pattern _pattern;
 
 		public PatternDetailPageViewModel(IDesignPatternsService designPatternsService)
 		{
-            this.designPatternsService = designPatternsService;
+            _designPatternsService = designPatternsService;
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
-            Pattern = query["Pattern"] as Pattern;
+            Pattern = query[nameof(Pattern)] as Pattern;
         }
 	}
 }
