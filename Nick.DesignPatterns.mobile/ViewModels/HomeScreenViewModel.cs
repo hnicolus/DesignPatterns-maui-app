@@ -11,11 +11,10 @@ public partial class HomePageViewModel : ObservableObject
     private readonly IDesignPatternsService designPatternsService;
 
     [ObservableProperty]
-    public List<Category> categories = new();
+    private List<Category> _categories = new();
 
     [ObservableProperty]
-    public string title = "Design Patterns";
-
+    private string _title = "Design Patterns";
 
     public HomePageViewModel(IDesignPatternsService patternsService )
     {
