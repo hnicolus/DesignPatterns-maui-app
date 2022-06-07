@@ -19,27 +19,36 @@
 
             <Label Text="The creational patterns aim to separate a system from how its objects are created, composed, and represented. They increase the system's flexibility in terms of the what, who, how, and when of object creation." Margin="0,0,0,10"/>
 
-             <Label Text="Author" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center"
+            <Label Text="Author" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center"
                    Margin="0,20,0,10"/>
 
-            <Frame Padding="10" HeightRequest="370"  >
+            <Frame Padding="10"
+                    MinimumHeightRequest="370"  >
                 <StackLayout HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
                     <Image Source="nicolas.png"/>
-                    <Label Text="Nicolas Maluleke" FontAttributes="Bold"
+                    <Label Text="{Binding Author.FullNames}" FontAttributes="Bold"
                            FontSize="18" 
                            HorizontalOptions="Center"/>
-                    <Label Text="Software Developer"
+                    <Label Text="{Binding  Author.Position}"
                            FontAttributes="Bold"
                            HorizontalOptions="Center" Margin="0,10"/>
                     <Label
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
-                        Text="The creational patterns aim to separate a system from how its objects are created, composed, and represented. They increase the system's flexibility in terms of the what, who, how, and when of object creation." Margin="0,0,0,10"/>
+                        Text="{Binding  Author.Bio}" Margin="0,0,0,10"/>
                     <Grid Margin="0,10" VerticalOptions="EndAndExpand" ColumnDefinitions="*,*,*,*,*,*">
-                        <ImageButton Grid.Column="1" Source="github.png"/>
-                        <ImageButton Grid.Column="2"  Source="linkedin.png"/>
-                        <ImageButton Grid.Column="3" Source="twitter.png"/>
-                        <ImageButton Grid.Column="4" Source="website.png"/>
+                        <ImageButton Grid.Column="1" Source="github.png"
+                                     Command="{Binding OpenLinkCommand}"
+                                     CommandParameter="{Static viewmodels:LinkType.Github}"/>
+                        <ImageButton Grid.Column="2"  Source="linkedin.png"
+                                     Command="{Binding OpenLinkCommand}"
+                                     CommandParameter="{Static viewmodels:LinkType.LinkedIn}"/>
+                        <ImageButton Grid.Column="3" Source="twitter.png"
+                                      Command="{Binding OpenLinkCommand}"
+                                      CommandParameter="{Static viewmodels:LinkType.Twitter}"/>
+                        <ImageButton Grid.Column="4" Source="website.png"
+                                      Command="{Binding OpenLinkCommand}"
+                                      CommandParameter="{Static viewmodels:LinkType.Website}"/>
                     </Grid>
                 </StackLayout>
             </Frame>
