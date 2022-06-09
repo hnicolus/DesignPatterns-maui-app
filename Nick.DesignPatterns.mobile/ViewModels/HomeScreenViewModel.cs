@@ -22,7 +22,7 @@ public partial class HomePageViewModel : ObservableObject
         Task.Run(LoadCategoriesAsync);
     }
 
-    [ICommand]
+    [RelayCommand]
     async Task OpenPatterns(int categoryId)
     {
       await Shell.Current.GoToAsync($"patterns?CategoryId={categoryId}");
@@ -30,7 +30,6 @@ public partial class HomePageViewModel : ObservableObject
 
     public async Task LoadCategoriesAsync()
     {
-        Title = "Design Patterns";
         Categories = await designPatternsService.GetCategoriesAsync();
     }
 }
