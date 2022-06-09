@@ -4,8 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DesignPatterns.Views.AboutPage"
              xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
-             x:DataType="viewmodels:AboutPageViewModel"
-             >
+             x:DataType="viewmodels:AboutPageViewModel">
     <ScrollView >
         <StackLayout Padding="12" >
             <Label Text="Design Patterns" FontSize="30" HorizontalOptions="Center"
