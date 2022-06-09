@@ -2,80 +2,78 @@
 using System.Text.Json;
 using DesignPatterns.Models;
 
-namespace DesignPatterns.Services
+namespace DesignPatterns.Services;
+
+public class DesignPatternsService : IDesignPatternsService
 {
-
-    public class DesignPatternsService : IDesignPatternsService
+    private List<Category> Categories = new();
+    private List<Pattern> Patterns = new();
+    public DesignPatternsService()
     {
-        private List<Category> Categories = new();
-        private List<Pattern> Patterns = new();
-        public DesignPatternsService()
-        {
-            Task.Run(async () =>
-           {
-               await LoadCategoriesFromJson();
-               await LoadPatternsFromFile();
-           });
-        }
+        Task.Run(async () =>
+       {
+           await LoadCategoriesFromJson();
+           await LoadPatternsFromFile();
+       });
+    }
 
-        async Task LoadCategoriesFromJson()
-        {
-            using Stream stream = await FileSystem.OpenAppPackageFileAsync("categories.json");
-            using StreamReader streamReader = new StreamReader(stream);
-            var content = streamReader.ReadToEnd();
-            Categories = JsonSerializer.Deserialize<List<Category>>(content,
-                new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-        }
-
-        async Task LoadPatternsFromFile()
-        {
-            using Stream stream = await FileSystem.OpenAppPackageFileAsync("patterns.json");
-            using StreamReader streamReader = new StreamReader(stream);
-            var content = streamReader.ReadToEnd();
-            Patterns = JsonSerializer.Deserialize<List<Pattern>>(content,
-                new JsonSerializerOptions
-                {
-                    PropertyNameCaseInsensitive = true
-                });
-        }
-        public async Task<List<Category>> GetCategoriesAsync()
-        {
-            await LoadIfEmpty();
-            return Categories;
-        }
-
-        public async Task<Category> GetCategoryAsync(int categoryId)
-        {
-            await LoadIfEmpty();
-            return Categories.FirstOrDefault(x => x.Id == categoryId);
-        }
-
-        private async Task LoadIfEmpty()
-        {
-            if (Categories.Count == 0)
+    async Task LoadCategoriesFromJson()
+    {
+        using Stream stream = await FileSystem.OpenAppPackageFileAsync("categories.json");
+        using StreamReader streamReader = new StreamReader(stream);
+        var content = streamReader.ReadToEnd();
+        Categories = JsonSerializer.Deserialize<List<Category>>(content,
+            new JsonSerializerOptions
             {
-                await LoadCategoriesFromJson();
-            }
-            if (Patterns.Count == 0)
+                PropertyNameCaseInsensitive = true
+            });
+    }
+
+    async Task LoadPatternsFromFile()
+    {
+        using Stream stream = await FileSystem.OpenAppPackageFileAsync("patterns.json");
+        using StreamReader streamReader = new StreamReader(stream);
+        var content = streamReader.ReadToEnd();
+        Patterns = JsonSerializer.Deserialize<List<Pattern>>(content,
+            new JsonSerializerOptions
             {
-                await LoadPatternsFromFile();
-            }
-        }
+                PropertyNameCaseInsensitive = true
+            });
+    }
+    public async Task<List<Category>> GetCategoriesAsync()
+    {
+        await LoadIfEmpty();
+        return Categories;
+    }
 
-        public async Task<List<Pattern>> GetCategoryPatternsAsync(int categoryId)
-        {
-            await LoadIfEmpty();
-            return Patterns.Where(x => x.CategoryId == categoryId).ToList();
-        }
+    public async Task<Category> GetCategoryAsync(int categoryId)
+    {
+        await LoadIfEmpty();
+        return Categories.FirstOrDefault(x => x.Id == categoryId);
+    }
 
-        public async Task<Pattern> GetPatternAsync(int patternId)
+    private async Task LoadIfEmpty()
+    {
+        if (Categories.Count == 0)
         {
-            await LoadIfEmpty();
-            return Patterns.FirstOrDefault(x => x.Id == patternId);
+            await LoadCategoriesFromJson();
         }
+        if (Patterns.Count == 0)
+        {
+            await LoadPatternsFromFile();
+        }
+    }
+
+    public async Task<List<Pattern>> GetCategoryPatternsAsync(int categoryId)
+    {
+        await LoadIfEmpty();
+        return Patterns.Where(x => x.CategoryId == categoryId).ToList();
+    }
+
+    public async Task<Pattern> GetPatternAsync(int patternId)
+    {
+        await LoadIfEmpty();
+        return Patterns.FirstOrDefault(x => x.Id == patternId);
     }
 }
 
