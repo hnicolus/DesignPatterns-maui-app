@@ -48,6 +48,8 @@
 	  <None Remove="Services\" />
 	  <None Remove="CommunityToolkit.Mvvm" />
 	  <None Remove="Microsoft.Maui.Graphics.Text.Markdig" />
+	  <None Remove="Microsoft.Maui.Dependencies" />
+	  <None Remove="Microsoft.Maui.Extensions" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Models\" />
@@ -73,7 +75,9 @@
 	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview3" />
+	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
 	  <PackageReference Include="Microsoft.Maui.Graphics.Text.Markdig" Version="6.0.300" />
+	  <PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.312" />
+	  <PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.312" />
 	</ItemGroup>
 </Project>
