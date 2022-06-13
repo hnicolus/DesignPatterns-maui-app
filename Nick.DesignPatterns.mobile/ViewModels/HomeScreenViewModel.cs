@@ -16,7 +16,7 @@ public partial class HomePageViewModel : ObservableObject
     [ObservableProperty]
     private string _title = "Design Patterns";
 
-    public HomePageViewModel(IDesignPatternsService patternsService )
+    public HomePageViewModel(IDesignPatternsService patternsService)
     {
         designPatternsService = patternsService;
         Task.Run(LoadCategoriesAsync);
@@ -25,7 +25,7 @@ public partial class HomePageViewModel : ObservableObject
     [RelayCommand]
     async Task OpenPatterns(int categoryId)
     {
-      await Shell.Current.GoToAsync($"patterns?CategoryId={categoryId}");
+        await Shell.Current.GoToAsync($"patterns?CategoryId={categoryId}");
     }
 
     public async Task LoadCategoriesAsync()
