@@ -23,7 +23,7 @@ public partial class HomePageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    async Task OpenPatterns(int categoryId)
+    async Task OpenPatternsAsync(int categoryId)
     {
         await Shell.Current.GoToAsync($"patterns?CategoryId={categoryId}");
     }
