@@ -1,0 +1,1 @@
+global using  Nick.DesignPatterns.Utils;
