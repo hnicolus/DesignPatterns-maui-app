@@ -36,15 +36,6 @@ jobs:
         path: |
           ./**/*.aab
           ./**/*.apk
-          
-  upload-artifacts:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v3.0.0
     - name: Setup Google service file
       run: |
         echo "${{secrets.GOOGLE_CONSOLE_SERVICE_FILE}}" > api-service-account.json.asc
