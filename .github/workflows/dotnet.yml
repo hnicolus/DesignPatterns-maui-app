@@ -18,8 +18,10 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Install .NET MAUI
-      run: dotnet workload install maui
-      
+      run:  |
+          dotnet nuget locals all --clear 
+          dotnet workload install maui
+          dotnet workload install android ios maccatalyst maui wasm-tools
     - name: Restore dependencies
       run: dotnet restore
     - name: Build Android
