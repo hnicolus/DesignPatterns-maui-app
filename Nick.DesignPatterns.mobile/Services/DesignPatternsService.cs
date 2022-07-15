@@ -1,13 +1,12 @@
-﻿using System;
-using System.Text.Json;
-using DesignPatterns.Models;
+﻿using System.Text.Json;
 
 namespace DesignPatterns.Services;
 
-public class DesignPatternsService : IDesignPatternsService
+public class DesignPatternsService : ITransientService
 {
     private List<Category> Categories = new();
     private List<Pattern> Patterns = new();
+
     public DesignPatternsService()
     {
         Task.Run(async () =>
@@ -40,6 +39,7 @@ public class DesignPatternsService : IDesignPatternsService
                 PropertyNameCaseInsensitive = true
             });
     }
+    
     public async Task<List<Category>> GetCategoriesAsync()
     {
         await LoadIfEmpty();
@@ -55,25 +55,16 @@ public class DesignPatternsService : IDesignPatternsService
     private async Task LoadIfEmpty()
     {
         if (Categories.Count == 0)
-        {
             await LoadCategoriesFromJson();
-        }
+
         if (Patterns.Count == 0)
-        {
             await LoadPatternsFromFile();
-        }
     }
 
     public async Task<List<Pattern>> GetCategoryPatternsAsync(int categoryId)
     {
         await LoadIfEmpty();
         return Patterns.Where(x => x.CategoryId == categoryId).ToList();
-    }
-
-    public async Task<Pattern> GetPatternAsync(int patternId)
-    {
-        await LoadIfEmpty();
-        return Patterns.FirstOrDefault(x => x.Id == patternId);
     }
 }
 

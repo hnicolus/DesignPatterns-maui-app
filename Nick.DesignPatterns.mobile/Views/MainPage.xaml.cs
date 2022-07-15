@@ -1,8 +1,9 @@
-﻿using DesignPatterns.ViewModels;
+﻿using DesignPatterns.Utils;
+using DesignPatterns.ViewModels;
 
-namespace DesignPatterns;
+namespace DesignPatterns.Views;
 
-public partial class MainPage : ContentPage
+public partial class MainPage : ContentPage, ITransientService
 {
 	public MainPage(HomePageViewModel viewModel)
 	{
@@ -10,14 +11,11 @@ public partial class MainPage : ContentPage
 		BindingContext = viewModel;
 	}
 
-    void CollectionView_SelectionChanged(System.Object sender, Microsoft.Maui.Controls.SelectionChangedEventArgs e)
+    void CollectionView_SelectionChanged(Object sender, SelectionChangedEventArgs e)
     {
-        categoriesCollection.UpdateSelectedItems(null);
-
+	    (sender as CollectionView).UpdateSelectedItems(null);
 		(sender as CollectionView).SelectedItem = null;
 		(sender as CollectionView).SelectedItems = null;
-
-
 	}
 }
 

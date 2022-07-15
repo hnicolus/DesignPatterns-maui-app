@@ -1,25 +1,33 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DesignPatterns.Utils;
 
 namespace DesignPatterns.ViewModels
 {
     public enum LinkType
     {
-        Github,
+        Github ,
         LinkedIn,
         Twitter,
         Website
     }
-    public partial class AboutPageViewModel : ObservableObject
+
+    public partial class AboutPageViewModel : ObservableObject, ITransientService
     {
         [ObservableProperty]
-        private string _title = "About Design Patterns";
+        string _title = "About Design Patterns";
+        
+        [ObservableProperty]
+        List<string> _description = new List<string>()
+        {
+            "This is a sample about page for the Design Patterns app."
+        };
 
         [ObservableProperty]
-        private AuthorViewModel author;
+        AuthorViewModel author = new ();
 
         [RelayCommand]
-        public static async Task OpenLinkAsync(LinkType linkType)
+        public async Task OpenLinkAsync(LinkType linkType)
         {
             Dictionary<LinkType, Action> execDict = new Dictionary<LinkType, Action>
         {
@@ -32,9 +40,6 @@ namespace DesignPatterns.ViewModels
             await MainThread.InvokeOnMainThreadAsync(execDict[linkType]);
         }
 
-        private static async Task OpenWebAsync(string url)
-        {
-            await Launcher.OpenAsync(url);
-        }
+        static async Task OpenWebAsync(string url) => await Launcher.OpenAsync(url);
     }
 }

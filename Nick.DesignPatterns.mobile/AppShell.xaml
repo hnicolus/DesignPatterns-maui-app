@@ -10,7 +10,7 @@
     <ShellContent
         Title="Design Patterns"
         Icon="toolbox.png"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate views:MainPage}"
         Route="MainPage" />
 
     <FlyoutItem Title="About"

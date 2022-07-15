@@ -15,5 +15,4 @@ public class Pattern
     public Pattern()
     {
     }
-
 }

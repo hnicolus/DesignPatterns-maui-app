@@ -1,8 +1,9 @@
-﻿using DesignPatterns.ViewModels;
+﻿using DesignPatterns.Utils;
+using DesignPatterns.ViewModels;
 
 namespace DesignPatterns.Views
 {
-    public partial class PatternDetailPage : ContentPage
+    public partial class PatternDetailPage : ContentPage, ITransientService
     {
         public PatternDetailPage(PatternDetailPageViewModel vm)
         {

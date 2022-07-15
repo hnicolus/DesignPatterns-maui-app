@@ -15,9 +15,9 @@
                    Margin="0,0,0,10"/>
 
             <Label Text="The creational patterns aim to separate a system from how its objects are created, composed, and represented. They increase the system's flexibility in terms of the what, who, how, and when of object creation." Margin="0,0,0,10"/>
-
-            <Label Text="The creational patterns aim to separate a system from how its objects are created, composed, and represented. They increase the system's flexibility in terms of the what, who, how, and when of object creation." Margin="0,0,0,10"/>
-
+            
+            <Label Text="The patterns are used to create objects that are easier to use and more flexible than the traditional way of creating objects." Margin="0,0,0,10"/>
+            
             <Label Text="Author" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center"
                    Margin="0,20,0,10"/>
 

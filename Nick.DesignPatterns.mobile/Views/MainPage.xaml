@@ -1,12 +1,13 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <ContentPage
-            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DesignPatterns.MainPage"
-             xmlns:models="clr-namespace:DesignPatterns.Models"
-             xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
-             x:DataType="viewmodels:HomePageViewModel"
-             Title="{Binding Title}">
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:DesignPatterns.Models"
+    xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
+    x:DataType="viewmodels:HomePageViewModel"
+    x:Class="DesignPatterns.Views.MainPage"
+    Title="{Binding Title}">
 
     <ScrollView Padding="10">
         <CollectionView
@@ -16,38 +17,35 @@
             SelectionChanged="CollectionView_SelectionChanged"
             SelectionMode="None">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate  x:DataType="models:Category">
+                <DataTemplate x:DataType="models:Category">
                     <ContentView Padding="0">
-                        <Frame  Padding="14,6,14,6"   >
-                        <Grid  ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
-                            <Label
+                        <Frame Padding="14,6,14,6">
+                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
+                                <Label
                                     Text="{Binding Title}"
                                     HorizontalTextAlignment="Start"
                                     VerticalTextAlignment="Center"
                                     Style="{DynamicResource Heading}" />
-                            <Image
+                                <Image
                                     WidthRequest="40"
                                     HeightRequest="30"
                                     HorizontalOptions="EndAndExpand"
-                                    Source="tool.png" Grid.Column="1"/>
-                            <Label Text="{Binding Description}"
-                                   HorizontalTextAlignment="Start"
-                                   Grid.Row="1" Grid.ColumnSpan="2"/>
+                                    Source="tool.png" Grid.Column="1" />
+                                <Label Text="{Binding Description}"
+                                       HorizontalTextAlignment="Start"
+                                       Grid.Row="1" Grid.ColumnSpan="2" />
                                 <Button
                                     Text="View Patterns"
                                     Margin="0,16,0,10"
-
                                     VerticalOptions="EndAndExpand"
                                     HorizontalOptions="FillAndExpand"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HomePageViewModel}}, Path=OpenPatternsCommand}"
-                                CommandParameter="{Binding Id}"
-                                Grid.Row="2" Grid.ColumnSpan="2">
-
-                                </Button>
-                        </Grid>
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HomePageViewModel}}, Path=OpenPatternsCommand}"
+                                    CommandParameter="{Binding Id}"
+                                    Grid.Row="2" Grid.ColumnSpan="2" />
+                            </Grid>
                         </Frame>
                     </ContentView>
                 </DataTemplate>
@@ -55,4 +53,3 @@
         </CollectionView>
     </ScrollView>
 </ContentPage>
-
