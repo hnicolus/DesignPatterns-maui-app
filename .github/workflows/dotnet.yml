@@ -34,5 +34,5 @@ jobs:
       uses: wzieba/AppCenter-Github-Action@v1.3.3
       with:
         appName: nicolasmaluleke/Design-Patterns
-        token: "${{ APPCENTER_ANDROID_UPLOAD_TOKEN }}"
+        token: echo "${{ APPCENTER_ANDROID_UPLOAD_TOKEN }}"
         file: ./**/*.apk
