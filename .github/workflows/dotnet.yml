@@ -36,3 +36,30 @@ jobs:
         path: |
           ./**/*.aab
           ./**/*.apk
+          
+  upload-artifacts:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v3.0.0
+    - name: Setup Google service file
+      run: |
+        echo "${{secrets.GOOGLE_CONSOLE_SERVICE_FILE}}" > api-service-account.json.asc
+        gpg -d --passphrase "${{ secrets.GOOGLE_CONSOLE_SERVICE_FILE_GPG_PASSWORD }}" --batch api-service-account.json.asc > api-service-account.json
+    
+    - name: Upload Android App to Google Play Console
+      uses: Sokchanbo/android-upload-google-play@1.0.0
+      with:
+        service-account: ./api-service-account.json
+        release-file:  ./**/com.nicksoftware.designpatterns-Signed.aab
+        package-name: 'com.nicksoftware.designpatterns'
+        track: 'alpha'
+#     - name: Upload Android Build Artifact To App Center
+#       uses: wzieba/AppCenter-Github-Action@v1.3.3
+#       with:
+#         appName: nicolasmaluleke/Design-Patterns
+#         token: ${{ secrets.APPCENTER_ANDROID_UPLOAD_TOKEN }}
+#         file: ./**/com.nicksoftware.designpatterns-Signed.apk
