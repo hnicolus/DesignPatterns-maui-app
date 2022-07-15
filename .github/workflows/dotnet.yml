@@ -36,9 +36,3 @@ jobs:
         path: |
           ./**/*.aab
           ./**/*.apk
-    - name: Upload Android Build Artifact To App Center
-      uses: wzieba/AppCenter-Github-Action@v1.3.3
-      with:
-        appName: nicolasmaluleke/Design-Patterns
-        token: ${{ secrets.APPCENTER_ANDROID_UPLOAD_TOKEN }}
-        file: ./**/*.apk
