@@ -1,1 +1,2 @@
-global using  Nick.DesignPatterns.Utils;
+global using DesignPatterns.Utils;
+global using DesignPatterns.Models;
