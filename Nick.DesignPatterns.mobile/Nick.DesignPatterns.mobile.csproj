@@ -55,6 +55,7 @@
 	  <None Remove="Pages\" />
 	  <None Remove="Utils\" />
 	  <None Remove="Microsoft.AppCenter.Analytics" />
+	  <None Remove="Microsoft.AspNetCore.Components.WebView.Maui" />
 	</ItemGroup>
 	
 	<ItemGroup>
@@ -68,10 +69,11 @@
 	
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0-preview4" />
-	  <PackageReference Include="Microsoft.Maui.Graphics.Text.Markdig" Version="6.0.300" />
-	  <PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.312" />
-	  <PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.312" />
+	  <PackageReference Include="Microsoft.Maui.Graphics.Text.Markdig" Version="6.0.403" />
+	  <PackageReference Include="Microsoft.Maui.Dependencies" Version="6.0.408" />
+	  <PackageReference Include="Microsoft.Maui.Extensions" Version="6.0.408" />
 	  <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.1" />
+	  <PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="6.0.408" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Content Remove="Resources\Raw\categories.json" />
