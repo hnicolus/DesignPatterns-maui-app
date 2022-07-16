@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Collections.Generic;
+using System.Text.Json;
 
 namespace DesignPatterns.Services;
 
@@ -19,8 +20,11 @@ public class DesignPatternsService : ITransientService
     async Task LoadCategoriesFromJson()
     {
         using Stream stream = await FileSystem.OpenAppPackageFileAsync("categories.json");
+
         using StreamReader streamReader = new StreamReader(stream);
+
         var content = streamReader.ReadToEnd();
+
         Categories = JsonSerializer.Deserialize<List<Category>>(content,
             new JsonSerializerOptions
             {
@@ -31,8 +35,11 @@ public class DesignPatternsService : ITransientService
     async Task LoadPatternsFromFile()
     {
         using Stream stream = await FileSystem.OpenAppPackageFileAsync("patterns.json");
+
         using StreamReader streamReader = new StreamReader(stream);
+
         var content = streamReader.ReadToEnd();
+
         Patterns = JsonSerializer.Deserialize<List<Pattern>>(content,
             new JsonSerializerOptions
             {
@@ -52,19 +59,22 @@ public class DesignPatternsService : ITransientService
         return Categories.FirstOrDefault(x => x.Id == categoryId);
     }
 
-    private async Task LoadIfEmpty()
-    {
-        if (Categories.Count == 0)
-            await LoadCategoriesFromJson();
-
-        if (Patterns.Count == 0)
-            await LoadPatternsFromFile();
-    }
-
     public async Task<List<Pattern>> GetCategoryPatternsAsync(int categoryId)
     {
         await LoadIfEmpty();
         return Patterns.Where(x => x.CategoryId == categoryId).ToList();
     }
+
+    private async Task LoadIfEmpty()
+    {
+
+        if (IsEmpty(Categories))
+            await LoadCategoriesFromJson();
+
+        if (IsEmpty(Patterns))
+            await LoadPatternsFromFile();
+    }
+
+    bool IsEmpty<T> (List<T> items) => (items).Count == 0;
 }
 
