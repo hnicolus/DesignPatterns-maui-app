@@ -1,22 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using DesignPatterns.Utils;
 
-namespace DesignPatterns.ViewModels;
-
-public partial class AuthorViewModel : ObservableObject
+namespace DesignPatterns.ViewModels
 {
-    [ObservableProperty]
-    public string position = "Software Developer";
+    public partial class AuthorViewModel : ObservableObject, ITransientService
+    {
+        [ObservableProperty]
+        string position = "Software Developer";
 
-    [ObservableProperty]
-    public string fullNames = "Nicolas Maluleke";
+        [ObservableProperty]
+        string fullNames = "Nicolas Maluleke";
 
-    [ObservableProperty]
-    public static string bio =
-        @"
-            I am a highly result-driven developer, aspiring software architect, and a computer science student.
-            I am focused on expanding my knowledge and my abilities in programming and quality assurance.
+        [ObservableProperty]
+        public  string bio =
+            @"
+            I am just a dude who writes a lot of code.
             I enjoy writing poetic and expressive code that speaks to both developers and domain experts of any
             level and creating simplified software to enhance user interaction and experience.
             ";
+    }
 }
-

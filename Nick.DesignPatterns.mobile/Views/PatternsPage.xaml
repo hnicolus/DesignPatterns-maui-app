@@ -6,16 +6,14 @@
              xmlns:models="clr-namespace:DesignPatterns.Models"
              xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
              x:DataType="viewmodels:PatternsPageViewModel"
-             Title="{Binding Category.Title}"
-             >
+             Title="{Binding Category.Title}">
     <ScrollView Padding="10">
         <CollectionView
             x:Name="categoriesCollection"
             ItemsSource="{Binding Patterns}"
             ItemSizingStrategy="MeasureAllItems"
              SelectionMode="Single"
-             SelectionChanged="OnCollectionViewSelectionChanged"
-            >
+             SelectionChanged="OnCollectionViewSelectionChanged">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
             </CollectionView.ItemsLayout>

@@ -1,10 +1,11 @@
 ﻿using DesignPatterns.Models;
+using DesignPatterns.Utils;
 using DesignPatterns.ViewModels;
 
 namespace DesignPatterns.Views
 {
     [QueryProperty(nameof(CategoryId), nameof(CategoryId))]
-    public partial class PatternsPage : ContentPage
+    public partial class PatternsPage : ContentPage, ITransientService
     {
         private int categoryId;
 

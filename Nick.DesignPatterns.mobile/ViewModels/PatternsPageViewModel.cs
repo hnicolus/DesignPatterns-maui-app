@@ -2,21 +2,22 @@
 using CommunityToolkit.Mvvm.Input;
 using DesignPatterns.Models;
 using DesignPatterns.Services;
+using DesignPatterns.Utils;
 using DesignPatterns.Views;
 
 namespace DesignPatterns.ViewModels;
 
-public partial class PatternsPageViewModel : ObservableObject
+public partial class PatternsPageViewModel : ObservableObject, ITransientService
 {
-    private readonly IDesignPatternsService designPatternsService;
+    readonly DesignPatternsService designPatternsService;
 
     [ObservableProperty]
-    private List<Pattern> _patterns;
+    List<Pattern> _patterns;
 
     [ObservableProperty]
-    private Category _category;
+    Category _category;
 
-    public PatternsPageViewModel(IDesignPatternsService patternsService)
+    public PatternsPageViewModel(DesignPatternsService patternsService)
     {
         designPatternsService = patternsService;
     }
