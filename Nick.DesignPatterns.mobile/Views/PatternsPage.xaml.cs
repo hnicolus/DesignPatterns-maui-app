@@ -7,14 +7,14 @@ namespace DesignPatterns.Views
     [QueryProperty(nameof(CategoryId), nameof(CategoryId))]
     public partial class PatternsPage : ContentPage, ITransientService
     {
-        private int categoryId;
+        private int _categoryId;
 
         public int CategoryId
         {
-            get => categoryId;
+            get => _categoryId;
             set
             {
-                categoryId = value;
+                _categoryId = value;
                 OnPropertyChanged();
             }
         }
@@ -27,13 +27,13 @@ namespace DesignPatterns.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            await (BindingContext as PatternsPageViewModel).LoadPatternsAsync(categoryId);
+            await ((PatternsPageViewModel)BindingContext).LoadPatternsAsync(CategoryId);
         }
 
         void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Pattern pattern = (Pattern)(sender as CollectionView).SelectedItem;
-            (BindingContext as PatternsPageViewModel).ShowDetailsCommand.Execute(pattern);
+            var pattern = (Pattern)((CollectionView)sender).SelectedItem;
+            ((PatternsPageViewModel)BindingContext).ShowDetailsCommand.Execute(pattern);
         }
     }
 }
