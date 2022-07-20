@@ -1,17 +1,13 @@
-﻿
-using CommunityToolkit.Mvvm.ComponentModel;
-using DesignPatterns.Models;
-using DesignPatterns.Utils;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace DesignPatterns.ViewModels;
 
-public partial class PatternDetailPageViewModel : ObservableObject, IQueryAttributable, ITransientService
+public partial class PatternDetailPageViewModel : ObservableObject, IQueryAttributable, ITransientDependency
 {
-
-    [ObservableProperty]
-    Pattern _pattern;
+    [ObservableProperty] private Pattern _pattern;
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
-        => Pattern = query[nameof(Pattern)] as Pattern;
+    {
+        Pattern = (Pattern)query[nameof(Pattern)];
+    }
 }
-

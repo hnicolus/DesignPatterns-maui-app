@@ -1,57 +1,61 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<ContentPage
-            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DesignPatterns.Views.AboutPage"
-             xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
-             x:DataType="viewmodels:AboutPageViewModel">
-    <ScrollView >
-        <StackLayout Padding="12" >
-            <Label Text="Design Patterns" FontSize="30" HorizontalOptions="Center"
-               Margin="0,0,0,4"/>
-            <Label Text="Version : 1.0.0" FontSize="10" HorizontalOptions="Center"
-                   Margin="0,0,0,24"/>
-            <Label Text="Description" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center"
-                   Margin="0,0,0,10"/>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 
-            <Label Text="The creational patterns aim to separate a system from how its objects are created, composed, and represented. They increase the system's flexibility in terms of the what, who, how, and when of object creation." Margin="0,0,0,10"/>
-            
-            <Label Text="The patterns are used to create objects that are easier to use and more flexible than the traditional way of creating objects." Margin="0,0,0,10"/>
-            
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DesignPatterns.Views.AboutPage"
+    xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
+    x:DataType="viewmodels:AboutPageViewModel">
+    <ScrollView>
+        <StackLayout Padding="12">
+            <Label Text="Design Patterns" FontSize="30" HorizontalOptions="Center"
+                   Margin="0,0,0,4" />
+            <Label Text="Version : 1.0.0" FontSize="10" HorizontalOptions="Center"
+                   Margin="0,0,0,24" />
+            <Label Text="Description" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center"
+                   Margin="0,0,0,10" />
+
+            <Label
+                Text="The creational patterns aim to separate a system from how its objects are created, composed, and represented. They increase the system's flexibility in terms of the what, who, how, and when of object creation."
+                Margin="0,0,0,10" />
+
+            <Label
+                Text="The patterns are used to create objects that are easier to use and more flexible than the traditional way of creating objects."
+                Margin="0,0,0,10" />
+
             <Label Text="Author" FontAttributes="Bold" FontSize="24" HorizontalOptions="Center"
-                   Margin="0,20,0,10"/>
+                   Margin="0,20,0,10" />
 
             <Frame Padding="10"
-                    MinimumHeightRequest="370"  >
-                <StackLayout HorizontalOptions="Center" VerticalOptions="StartAndExpand" >
-                    <Image Source="nicolas.png"/>
+                   MinimumHeightRequest="370">
+                <StackLayout HorizontalOptions="Center" VerticalOptions="StartAndExpand">
+                    <Image Source="nicolas.png" />
                     <Label Text="{Binding Author.FullNames}" FontAttributes="Bold"
-                           FontSize="18" 
-                           HorizontalOptions="Center"/>
+                           FontSize="18"
+                           HorizontalOptions="Center" />
                     <Label Text="{Binding  Author.Position}"
                            FontAttributes="Bold"
-                           HorizontalOptions="Center" Margin="0,10"/>
+                           HorizontalOptions="Center" Margin="0,10" />
                     <Label
                         HorizontalOptions="Center"
                         HorizontalTextAlignment="Center"
-                        Text="{Binding  Author.Bio}" Margin="0,0,0,10"/>
+                        Text="{Binding  Author.Bio}" Margin="0,0,0,10" />
                     <Grid Margin="0,10" VerticalOptions="EndAndExpand" ColumnDefinitions="*,*,*,*,*,*">
                         <ImageButton Grid.Column="1" Source="github.png"
                                      Command="{Binding OpenLinkCommand}"
-                                     CommandParameter="{Static viewmodels:LinkType.Github}"/>
-                        <ImageButton Grid.Column="2"  Source="linkedin.png"
+                                     CommandParameter="{Static viewmodels:LinkType.Github}" />
+                        <ImageButton Grid.Column="2" Source="linkedin.png"
                                      Command="{Binding OpenLinkCommand}"
-                                     CommandParameter="{Static viewmodels:LinkType.LinkedIn}"/>
+                                     CommandParameter="{Static viewmodels:LinkType.LinkedIn}" />
                         <ImageButton Grid.Column="3" Source="twitter.png"
-                                      Command="{Binding OpenLinkCommand}"
-                                      CommandParameter="{Static viewmodels:LinkType.Twitter}"/>
+                                     Command="{Binding OpenLinkCommand}"
+                                     CommandParameter="{Static viewmodels:LinkType.Twitter}" />
                         <ImageButton Grid.Column="4" Source="website.png"
-                                      Command="{Binding OpenLinkCommand}"
-                                      CommandParameter="{Static viewmodels:LinkType.Website}"/>
+                                     Command="{Binding OpenLinkCommand}"
+                                     CommandParameter="{Static viewmodels:LinkType.Website}" />
                     </Grid>
                 </StackLayout>
             </Frame>
         </StackLayout>
     </ScrollView>
 </ContentPage>
-

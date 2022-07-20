@@ -1,9 +1,4 @@
-﻿using DesignPatterns.Services;
-using DesignPatterns.Utils;
-using DesignPatterns.ViewModels;
-using DesignPatterns.Views;
-
-namespace DesignPatterns;
+﻿namespace DesignPatterns;
 
 public static class MauiProgram
 {

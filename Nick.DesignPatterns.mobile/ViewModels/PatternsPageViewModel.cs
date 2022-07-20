@@ -1,25 +1,21 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DesignPatterns.Models;
 using DesignPatterns.Services;
-using DesignPatterns.Utils;
 using DesignPatterns.Views;
 
 namespace DesignPatterns.ViewModels;
 
-public partial class PatternsPageViewModel : ObservableObject, ITransientService
+public partial class PatternsPageViewModel : ObservableObject, ITransientDependency
 {
-    readonly DesignPatternsService designPatternsService;
+    private readonly DesignPatternsService _designPatternsService;
 
-    [ObservableProperty]
-    List<Pattern> _patterns;
+    [ObservableProperty] private Category _category;
 
-    [ObservableProperty]
-    Category _category;
+    [ObservableProperty] private List<Pattern> _patterns;
 
     public PatternsPageViewModel(DesignPatternsService patternsService)
     {
-        designPatternsService = patternsService;
+        _designPatternsService = patternsService;
     }
 
     [RelayCommand]
@@ -35,8 +31,7 @@ public partial class PatternsPageViewModel : ObservableObject, ITransientService
 
     public async Task LoadPatternsAsync(int categoryId)
     {
-        Category = await designPatternsService.GetCategoryAsync(categoryId);
-        Patterns = await designPatternsService.GetCategoryPatternsAsync(categoryId);
+        Category = await _designPatternsService.GetCategoryAsync(categoryId);
+        Patterns = await _designPatternsService.GetCategoryPatternsAsync(categoryId);
     }
 }
-

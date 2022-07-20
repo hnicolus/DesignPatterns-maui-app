@@ -2,7 +2,7 @@
 
 namespace DesignPatterns.Services;
 
-public class DesignPatternsService : ITransientService
+public class DesignPatternsService : ISingletonDependency
 {
     private List<Category> Categories = new();
     private List<Pattern> Patterns = new();
@@ -10,16 +10,16 @@ public class DesignPatternsService : ITransientService
     public DesignPatternsService()
     {
         Task.Run(async () =>
-       {
-           await LoadCategoriesFromJson();
-           await LoadPatternsFromFile();
-       });
+        {
+            await LoadCategoriesFromJson();
+            await LoadPatternsFromFile();
+        });
     }
 
-    async Task LoadCategoriesFromJson()
+    private async Task LoadCategoriesFromJson()
     {
-        using Stream stream = await FileSystem.OpenAppPackageFileAsync("categories.json");
-        using StreamReader streamReader = new StreamReader(stream);
+        using var stream = await FileSystem.OpenAppPackageFileAsync("categories.json");
+        using var streamReader = new StreamReader(stream);
         var content = streamReader.ReadToEnd();
         Categories = JsonSerializer.Deserialize<List<Category>>(content,
             new JsonSerializerOptions
@@ -28,10 +28,10 @@ public class DesignPatternsService : ITransientService
             });
     }
 
-    async Task LoadPatternsFromFile()
+    private async Task LoadPatternsFromFile()
     {
-        using Stream stream = await FileSystem.OpenAppPackageFileAsync("patterns.json");
-        using StreamReader streamReader = new StreamReader(stream);
+        using var stream = await FileSystem.OpenAppPackageFileAsync("patterns.json");
+        using var streamReader = new StreamReader(stream);
         var content = streamReader.ReadToEnd();
         Patterns = JsonSerializer.Deserialize<List<Pattern>>(content,
             new JsonSerializerOptions
@@ -39,7 +39,7 @@ public class DesignPatternsService : ITransientService
                 PropertyNameCaseInsensitive = true
             });
     }
-    
+
     public async Task<List<Category>> GetCategoriesAsync()
     {
         await LoadIfEmpty();
@@ -67,4 +67,3 @@ public class DesignPatternsService : ITransientService
         return Patterns.Where(x => x.CategoryId == categoryId).ToList();
     }
 }
-
