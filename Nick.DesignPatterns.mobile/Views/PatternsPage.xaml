@@ -1,44 +1,45 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <ContentPage
-            xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DesignPatterns.Views.PatternsPage"
-             xmlns:models="clr-namespace:DesignPatterns.Models"
-             xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
-             x:DataType="viewmodels:PatternsPageViewModel"
-             Title="{Binding Category.Title}">
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DesignPatterns.Views.PatternsPage"
+    xmlns:models="clr-namespace:DesignPatterns.Models"
+    xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
+    x:DataType="viewmodels:PatternsPageViewModel"
+    Title="{Binding Category.Title}">
     <ScrollView Padding="10">
-        <CollectionView
-            x:Name="categoriesCollection"
-            ItemsSource="{Binding Patterns}"
-            ItemSizingStrategy="MeasureAllItems"
-             SelectionMode="Single"
-             SelectionChanged="OnCollectionViewSelectionChanged">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="20"/>
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate >
-                    <ContentView
-                        x:DataType="models:Pattern" Padding="0" >
-                        <Frame Padding="14,6,14,0">
-                        <Grid  ColumnDefinitions="*,*" RowDefinitions="60">
-                            <Label
-                                Text="{Binding Name}"
-                                HorizontalTextAlignment="Start"
-                                VerticalTextAlignment="Center"
-                                Style="{DynamicResource Heading}" />
-                            <Image
-                                WidthRequest="40"
-                                HeightRequest="30"
-                                HorizontalOptions="EndAndExpand"
-                                Source="{Binding Icon}" Grid.Column="1"/>
-                        </Grid>
-                        </Frame>
-                    </ContentView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <VerticalStackLayout>
+            <CollectionView
+                ItemsSource="{Binding Patterns}"
+                ItemSizingStrategy="MeasureAllItems"
+                SelectionMode="Single"
+                SelectionChanged="OnCollectionViewSelectionChanged">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView
+                            x:DataType="models:Pattern" Padding="0">
+                            <Frame Padding="14,6,14,0">
+                                <Grid ColumnDefinitions="*,*" RowDefinitions="60">
+                                    <Label
+                                        Text="{Binding Name}"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
+                                        Style="{DynamicResource Heading}" />
+                                    <Image
+                                        WidthRequest="40"
+                                        HeightRequest="30"
+                                        HorizontalOptions="EndAndExpand"
+                                        Source="{Binding Icon}" Grid.Column="1" />
+                                </Grid>
+                            </Frame>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
-

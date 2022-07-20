@@ -10,46 +10,47 @@
     Title="{Binding Title}">
 
     <ScrollView Padding="10">
-        <CollectionView
-            x:Name="categoriesCollection"
-            ItemsSource="{Binding Categories}"
-            ItemSizingStrategy="MeasureAllItems"
-            SelectionChanged="CollectionView_SelectionChanged"
-            SelectionMode="None">
-            <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
-            </CollectionView.ItemsLayout>
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:Category">
-                    <ContentView Padding="0">
-                        <Frame Padding="14,6,14,6">
-                            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
-                                <Label
-                                    Text="{Binding Title}"
-                                    HorizontalTextAlignment="Start"
-                                    VerticalTextAlignment="Center"
-                                    Style="{DynamicResource Heading}" />
-                                <Image
-                                    WidthRequest="40"
-                                    HeightRequest="30"
-                                    HorizontalOptions="EndAndExpand"
-                                    Source="tool.png" Grid.Column="1" />
-                                <Label Text="{Binding Description}"
-                                       HorizontalTextAlignment="Start"
-                                       Grid.Row="1" Grid.ColumnSpan="2" />
-                                <Button
-                                    Text="View Patterns"
-                                    Margin="0,16,0,10"
-                                    VerticalOptions="EndAndExpand"
-                                    HorizontalOptions="FillAndExpand"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HomePageViewModel}}, Path=OpenPatternsCommand}"
-                                    CommandParameter="{Binding Id}"
-                                    Grid.Row="2" Grid.ColumnSpan="2" />
-                            </Grid>
-                        </Frame>
-                    </ContentView>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <VerticalStackLayout>
+            <CollectionView
+                ItemsSource="{Binding Categories}"
+                ItemSizingStrategy="MeasureAllItems"
+                SelectionChanged="CollectionView_SelectionChanged"
+                SelectionMode="None">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Category">
+                        <ContentView Padding="0">
+                            <Frame Padding="14,6,14,6">
+                                <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto">
+                                    <Label
+                                        Text="{Binding Title}"
+                                        HorizontalTextAlignment="Start"
+                                        VerticalTextAlignment="Center"
+                                        Style="{DynamicResource Heading}" />
+                                    <Image
+                                        WidthRequest="40"
+                                        HeightRequest="30"
+                                        HorizontalOptions="EndAndExpand"
+                                        Source="tool.png" Grid.Column="1" />
+                                    <Label Text="{Binding Description}"
+                                           HorizontalTextAlignment="Start"
+                                           Grid.Row="1" Grid.ColumnSpan="2" />
+                                    <Button
+                                        Text="View Patterns"
+                                        Margin="0,16,0,10"
+                                        VerticalOptions="EndAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HomePageViewModel}}, Path=OpenPatternsCommand}"
+                                        CommandParameter="{Binding Id}"
+                                        Grid.Row="2" Grid.ColumnSpan="2" />
+                                </Grid>
+                            </Frame>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
