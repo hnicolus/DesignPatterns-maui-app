@@ -22,40 +22,48 @@ jobs:
   build-android:
 
     runs-on: windows-latest
-    name: android build
+    name: Android build
     steps:
     - uses: actions/checkout@v3
+    
     - name: Setup keystore file
       run: |
         echo "${{ secrets.KEYSTORE_FILE }}" > designpatterns.keystore.asc
         gpg -d --passphrase "${{ secrets.KEYSTORE_GPG_PASSWORD }}" --batch designpatterns.keystore.asc > designpatterns.keystore
+    
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+    
     - name: Install .NET MAUI
       run:  |
           dotnet nuget locals all --clear 
           dotnet workload install maui android
+    
     - name: Restore dependencies
       run: dotnet restore
+    
     - name: Build Android
       run: dotnet build Nick.DesignPatterns.mobile/Nick.DesignPatterns.mobile.csproj -c Release -f net6.0-android /p:AndroidSigningKeyStore=designpatterns.keystore /p:AndroidSigningKeyAlias=designpatternsKey /p:AndroidSigningKeyPass="${{ secrets.KEYSTORE_PASSWORD }}" /p:AndroidSigningStorePass="${{ secrets.KEYSTORE_PASSWORD }}" --no-restore
+    
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
         path: |
           ./**/*.aab
           ./**/*.apk
+   
     - name: Setup Google service file
       run: |
         echo "${{secrets.GOOGLE_CONSOLE_SERVICE_FILE}}" > api-service-account.json.asc
         gpg -d --passphrase "${{ secrets.GOOGLE_CONSOLE_SERVICE_FILE_GPG_PASSWORD }}" --batch api-service-account.json.asc > api-service-account.json
-    
+ 
+ #iOS Build
   build-ios:
     runs-on: macos-12
     
-    name: ios build
+    name: iOS build
     steps: 
       - name: checkout
         uses: actions/checkout@v3
@@ -67,7 +75,7 @@ jobs:
       - name: Install .NET MAUI
         run:  |
           dotnet nuget locals all --clear 
-          dotnet workload install maui ios maccatalyst
+          dotnet workload install maui ios
 
       - name: Restore Dependencies
         run: dotnet restore
@@ -78,11 +86,13 @@ jobs:
       - name: Upload iOS Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
-          name: mauibeach-ios-ci-build
+          name: design-patterns-ios-ci-build
           path: |
             ./**/*.app
-    # MAUI Windows Build
+            
+# MAUI Windows Build
   build-windows:
+  
     runs-on: windows-2022
     name: Windows Build
     steps:
@@ -101,11 +111,42 @@ jobs:
         run: dotnet restore
 
       - name: Build MAUI Windows
-        run: dotnet publish  Nick.DesignPatterns.mobile/Nick.DesignPatterns.mobile.csproj -c Release -f net6.0-windows10.0.19041.0 --no-restore
+        run: dotnet publish  Nick.DesignPatterns.mobile/Nick.DesignPatterns.mobile.csproj -c Release -f net6.0-windows10.0.17763.0 --no-restore
 
       - name: Upload Windows Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
-          name: mauibeach-windows-ci-build
+          name: design-patterns-windows-ci-build
           path: |
             ./**/*.msix
+
+ #iOS Build
+  build-mac:
+    
+    runs-on: macos-12  
+    name: Mac Build
+    steps: 
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with: 
+          dotnet-version: 6.0.x
+      - name: Install .NET MAUI
+        run:  |
+          dotnet nuget locals all --clear 
+          dotnet workload install maui maccatalyst
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build MAUI Mac
+        run: dotnet build Nick.DesignPatterns.mobile/Nick.DesignPatterns.mobile.csproj -c Release -f net6.0-maccatalyst --no-restore 
+
+      - name: Upload Mac Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: design-patterns-macos-ci-build
+          path: |
+            ./**/*.app
