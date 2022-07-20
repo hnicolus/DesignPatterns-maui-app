@@ -4,17 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DesignPatterns.Views.PatternDetailPage"
              xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
-             xmlns:maui="clr-namespace:Microsoft.AspNetCore.Components.WebView.Maui;assembly=Microsoft.AspNetCore.Components.WebView.Maui"
-             xmlns:views="clr-namespace:DesignPatterns.Views"
              x:DataType="viewmodels:PatternDetailPageViewModel"
              Title="{Binding Pattern.Name}"
              >
     <ScrollView >
-        <!--<maui:BlazorWebView HostPage="wwwroot/index.html">
-            <maui:BlazorWebView.RootComponents>
-                <maui:RootComponent Selector="app" ComponentType="{x:Type views:PatternDetails}" />
-            </maui:BlazorWebView.RootComponents>
-        </maui:BlazorWebView>-->
          <Grid Padding="12" RowDefinitions="Auto,*"> 
              <Label FontSize="31" 
                     HorizontalOptions="CenterAndExpand" 
