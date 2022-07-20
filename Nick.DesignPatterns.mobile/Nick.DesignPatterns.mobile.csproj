@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 <PropertyGroup>
 		<TargetFrameworks>net6.0-android;net6.0-ios;net6.0-maccatalyst</TargetFrameworks>
@@ -52,7 +52,6 @@
 	  <None Remove="Microsoft.Maui.Graphics.Text.Markdig" />
 	  <None Remove="Microsoft.Maui.Dependencies" />
 	  <None Remove="Microsoft.Maui.Extensions" />
-	  <None Remove="Pages\" />
 	  <None Remove="Utils\" />
 	  <None Remove="Microsoft.AppCenter.Analytics" />
 	</ItemGroup>
@@ -62,7 +61,6 @@
 	  <Folder Include="ViewModels\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Services\" />
-	  <Folder Include="Pages\" />
 	  <Folder Include="Utils\" />
 	</ItemGroup>
 	
