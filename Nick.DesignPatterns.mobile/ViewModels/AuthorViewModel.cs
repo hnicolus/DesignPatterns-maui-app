@@ -4,7 +4,7 @@ namespace DesignPatterns.ViewModels;
 
 public partial class AuthorViewModel : ObservableObject, ITransientDependency
 {
-    [ObservableProperty] public string bio =
+    [ObservableProperty] private string bio =
         @"
             I am just a dude who writes a lot of code.
             I enjoy writing poetic and expressive code that speaks to both developers and domain experts of any
