@@ -1,45 +1,46 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DesignPatterns.Utils;
 
-namespace DesignPatterns.ViewModels
+namespace DesignPatterns.ViewModels;
+
+public enum LinkType
 {
-    public enum LinkType
+    Github,
+    LinkedIn,
+    Twitter,
+    Website
+}
+
+public partial class AboutPageViewModel : ObservableObject, ITransientDependency
+{
+    [ObservableProperty] private List<string> _description = new()
     {
-        Github ,
-        LinkedIn,
-        Twitter,
-        Website
-    }
+        "This is a sample about page for the Design Patterns app."
+    };
 
-    public partial class AboutPageViewModel : ObservableObject, ITransientService
+    [ObservableProperty] private string _title = "About Design Patterns";
+
+    [ObservableProperty] private AuthorViewModel author = new();
+
+    [RelayCommand]
+    public async Task OpenLinkAsync(LinkType linkType)
     {
-        [ObservableProperty]
-        string _title = "About Design Patterns";
-        
-        [ObservableProperty]
-        List<string> _description = new List<string>()
-        {
-            "This is a sample about page for the Design Patterns app."
-        };
-
-        [ObservableProperty]
-        AuthorViewModel author = new ();
-
-        [RelayCommand]
-        public async Task OpenLinkAsync(LinkType linkType)
-        {
-            Dictionary<LinkType, Action> execDict = new Dictionary<LinkType, Action>
+        var execDict = new Dictionary<LinkType, Action>
         {
             { LinkType.Github, async () => await OpenWebAsync("https://github.com/hnicolus") },
-            { LinkType.LinkedIn, async () => await OpenWebAsync("https://www.linkedin.com/in/nicolas-maluleke-81a698191") },
+            {
+                LinkType.LinkedIn,
+                async () => await OpenWebAsync("https://www.linkedin.com/in/nicolas-maluleke-81a698191")
+            },
             { LinkType.Twitter, async () => await OpenWebAsync("https://twitter.com/HNicolus") },
             { LinkType.Website, async () => await OpenWebAsync("https://nicksoftware.co.za") }
         };
 
-            await MainThread.InvokeOnMainThreadAsync(execDict[linkType]);
-        }
+        await MainThread.InvokeOnMainThreadAsync(execDict[linkType]);
+    }
 
-        static async Task OpenWebAsync(string url) => await Launcher.OpenAsync(url);
+    private static async Task OpenWebAsync(string url)
+    {
+        await Launcher.OpenAsync(url);
     }
 }

@@ -8,6 +8,7 @@
     x:DataType="viewmodels:HomePageViewModel"
     x:Class="DesignPatterns.Views.MainPage"
     Title="{Binding Title}">
+
     <ScrollView Padding="10">
         <VerticalStackLayout>
             <CollectionView
@@ -33,18 +34,15 @@
                                         HeightRequest="30"
                                         HorizontalOptions="EndAndExpand"
                                         Source="tool.png" Grid.Column="1" />
-                                    <Label 
-                                        Text="{Binding Description}" 
-                                        HorizontalTextAlignment="Start"
-                                        Grid.Row="1" Grid.ColumnSpan="2" />
+                                    <Label Text="{Binding Description}"
+                                           HorizontalTextAlignment="Start"
+                                           Grid.Row="1" Grid.ColumnSpan="2" />
                                     <Button
                                         Text="View Patterns"
                                         Margin="0,16,0,10"
                                         VerticalOptions="EndAndExpand"
                                         HorizontalOptions="FillAndExpand"
-                                        Command="{Binding Source={RelativeSource 
-                                        AncestorType={x:Type viewmodels:HomePageViewModel}},
-                                        Path=OpenPatternsCommand}"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:HomePageViewModel}}, Path=OpenPatternsCommand}"
                                         CommandParameter="{Binding Id}"
                                         Grid.Row="2" Grid.ColumnSpan="2" />
                                 </Grid>

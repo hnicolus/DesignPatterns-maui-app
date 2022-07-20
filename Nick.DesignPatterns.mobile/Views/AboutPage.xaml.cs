@@ -1,17 +1,12 @@
-﻿using System;
-using System.Diagnostics;
-using DesignPatterns.Utils;
-using DesignPatterns.ViewModels;
+﻿using DesignPatterns.ViewModels;
 
-namespace DesignPatterns.Views
+namespace DesignPatterns.Views;
+
+public partial class AboutPage : ContentPage, ITransientDependency
 {
-	public partial class AboutPage: ContentPage, ITransientService
+    public AboutPage(AboutPageViewModel vm)
     {
-		public AboutPage(AboutPageViewModel vm)
-		{
-			InitializeComponent();
-			BindingContext = vm;
-		}
-	}
+        InitializeComponent();
+        BindingContext = vm;
+    }
 }
-

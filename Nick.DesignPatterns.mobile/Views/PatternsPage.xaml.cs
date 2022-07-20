@@ -1,40 +1,37 @@
-﻿using DesignPatterns.Models;
-using DesignPatterns.Utils;
-using DesignPatterns.ViewModels;
+﻿using DesignPatterns.ViewModels;
 
-namespace DesignPatterns.Views
+namespace DesignPatterns.Views;
+
+[QueryProperty(nameof(CategoryId), nameof(CategoryId))]
+public partial class PatternsPage : ContentPage, ITransientDependency
 {
-    [QueryProperty(nameof(CategoryId), nameof(CategoryId))]
-    public partial class PatternsPage : ContentPage, ITransientService
+    private int _categoryId;
+
+    public PatternsPage(PatternsPageViewModel viewModel)
     {
-        private int _categoryId;
+        InitializeComponent();
+        BindingContext = viewModel;
+    }
 
-        public int CategoryId
+    public int CategoryId
+    {
+        get => _categoryId;
+        set
         {
-            get => _categoryId;
-            set
-            {
-                _categoryId = value;
-                OnPropertyChanged();
-            }
-        }
-        public PatternsPage(PatternsPageViewModel viewModel)
-        {
-            InitializeComponent();
-            BindingContext = viewModel;
-        }
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await ((PatternsPageViewModel)BindingContext).LoadPatternsAsync(CategoryId);
-        }
-
-        void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var pattern = (Pattern)((CollectionView)sender).SelectedItem;
-            ((PatternsPageViewModel)BindingContext).ShowDetailsCommand.Execute(pattern);
+            _categoryId = value;
+            OnPropertyChanged();
         }
     }
-}
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await (BindingContext as PatternsPageViewModel).LoadPatternsAsync(_categoryId);
+    }
+
+    private void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var pattern = (Pattern)(sender as CollectionView).SelectedItem;
+        (BindingContext as PatternsPageViewModel).ShowDetailsCommand.Execute(pattern);
+    }
+}

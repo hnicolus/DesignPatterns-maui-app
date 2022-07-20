@@ -5,4 +5,6 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:DesignPatterns.MauiProgram.CreateMauiApp~Microsoft.Maui.Hosting.MauiApp")]
+[assembly:
+    SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>",
+        Scope = "member", Target = "~M:DesignPatterns.MauiProgram.CreateMauiApp~Microsoft.Maui.Hosting.MauiApp")]

@@ -1,22 +1,19 @@
-﻿using DesignPatterns.Utils;
-using DesignPatterns.ViewModels;
+﻿using DesignPatterns.ViewModels;
 
 namespace DesignPatterns.Views;
 
-public partial class MainPage : ContentPage, ITransientService
+public partial class MainPage : ContentPage, ITransientDependency
 {
-	public MainPage(HomePageViewModel viewModel)
-	{
-		InitializeComponent();
-		BindingContext = viewModel;
-	}
-
-    void CollectionView_SelectionChanged(Object sender, SelectionChangedEventArgs e)
+    public MainPage(HomePageViewModel viewModel)
     {
-	    (sender as CollectionView).UpdateSelectedItems(null);
-		(sender as CollectionView).SelectedItem = null;
-		(sender as CollectionView).SelectedItems = null;
-	}
+        InitializeComponent();
+        BindingContext = viewModel;
+    }
+
+    private void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        (sender as CollectionView).UpdateSelectedItems(null);
+        (sender as CollectionView).SelectedItem = null;
+        (sender as CollectionView).SelectedItems = null;
+    }
 }
-
-

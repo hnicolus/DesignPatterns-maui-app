@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -7,12 +8,12 @@
     xmlns:viewmodels="clr-namespace:DesignPatterns.ViewModels"
     x:DataType="viewmodels:PatternsPageViewModel"
     Title="{Binding Category.Title}">
-    <ScrollView Padding="10" Orientation="Vertical">
+    <ScrollView Padding="10">
         <VerticalStackLayout>
             <CollectionView
                 ItemsSource="{Binding Patterns}"
                 ItemSizingStrategy="MeasureAllItems"
-                SelectionMode="None"
+                SelectionMode="Single"
                 SelectionChanged="OnCollectionViewSelectionChanged">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" ItemSpacing="20" />

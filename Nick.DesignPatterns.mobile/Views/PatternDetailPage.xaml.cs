@@ -1,15 +1,12 @@
-﻿using DesignPatterns.Utils;
-using DesignPatterns.ViewModels;
+﻿using DesignPatterns.ViewModels;
 
-namespace DesignPatterns.Views
+namespace DesignPatterns.Views;
+
+public partial class PatternDetailPage : ContentPage, ITransientDependency
 {
-    public partial class PatternDetailPage : ContentPage, ITransientService
+    public PatternDetailPage(PatternDetailPageViewModel vm)
     {
-        public PatternDetailPage(PatternDetailPageViewModel vm)
-        {
-            InitializeComponent();
-            BindingContext = vm;
-        }
+        InitializeComponent();
+        BindingContext = vm;
     }
 }
-
