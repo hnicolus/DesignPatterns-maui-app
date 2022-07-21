@@ -1,13 +1,5 @@
 ﻿namespace DesignPatterns.Utils;
 
-public interface ITransientDependency
-{
-}
-
-public interface ISingletonDependency
-{
-}
-
 public static class MauiAppBuilderExtensions
 {
     public static void ConfigureServices(this MauiAppBuilder builder)
