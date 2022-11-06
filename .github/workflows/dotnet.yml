@@ -72,10 +72,10 @@ jobs:
         uses: actions/setup-dotnet@v2
         with: 
           dotnet-version: 6.0.x
-      - name: Install .NET MAUI
+      - name: Install .NET MAUI IOS
         run:  |
           dotnet nuget locals all --clear 
-          dotnet workload install maui-ios ios
+          dotnet workload install maui ios
 
       - name: Restore Dependencies
         run: dotnet restore
@@ -105,7 +105,7 @@ jobs:
           dotnet-version: 6.0.x
 
       - name: Install MAUI Workload WINDOWS
-        run: dotnet workload install maui-windows runtimes-windows-net6 runtimes-windows --ignore-failed-sources
+        run: dotnet workload install maui --ignore-failed-sources
 
       - name: Restore Dependencies
         run: dotnet restore
@@ -136,7 +136,7 @@ jobs:
       - name: Install .NET MAUI MACCATALYST
         run:  |
           dotnet nuget locals all --clear 
-          dotnet workload install maui-maccatalyst maccatalyst
+          dotnet workload install maui maccatalyst
 
       - name: Restore Dependencies
         run: dotnet restore
