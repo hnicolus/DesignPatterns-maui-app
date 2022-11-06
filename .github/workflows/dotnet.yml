@@ -34,7 +34,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 6.0.400-preview.22330.6
     
     - name: Install .NET MAUI ANDROID
       run:  |
@@ -71,7 +71,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with: 
-          dotnet-version: 6.0.x
+          dotnet-version: 6.0.400-preview.22330.6
       - name: Install .NET MAUI IOS
         run:  |
           dotnet nuget locals all --clear 
@@ -102,10 +102,10 @@ jobs:
       - name: Setup .NET 6
         uses: actions/setup-dotnet@v2
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: 6.0.400-preview.22330.6
 
       - name: Install MAUI Workload WINDOWS
-        run: dotnet workload install maui --ignore-failed-sources
+        run: dotnet workload install maui runtimes-windows-net6 runtimes-windows --ignore-failed-sources
 
       - name: Restore Dependencies
         run: dotnet restore
@@ -132,7 +132,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v2
         with: 
-          dotnet-version: 6.0.x
+          dotnet-version: 6.0.400-preview.22330.6
       - name: Install .NET MAUI MACCATALYST
         run:  |
           dotnet nuget locals all --clear 
