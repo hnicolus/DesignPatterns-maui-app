@@ -12,8 +12,8 @@
     <ScrollView Padding="10">
         <VerticalStackLayout>
             <CollectionView
-                ItemsSource="{Binding Categories}"
-                ItemSizingStrategy="MeasureAllItems"
+                ItemsSource="{Binding Categories}" 
+                ItemSizingStrategy="MeasureFirstItem"
                 SelectionChanged="CollectionView_SelectionChanged"
                 SelectionMode="None">
                 <CollectionView.ItemsLayout>

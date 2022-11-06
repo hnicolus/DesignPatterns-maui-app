@@ -91,34 +91,34 @@ jobs:
             ./**/*.app
             
 # MAUI Windows Build
-  build-windows:
+  # build-windows:
   
-    runs-on: windows-2022
-    name: Windows Build
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+  #   runs-on: windows-2022
+  #   name: Windows Build
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
 
-      - name: Setup .NET 6
-        uses: actions/setup-dotnet@v2
-        with:
-          dotnet-version: 6.0.x
+  #     - name: Setup .NET 6
+  #       uses: actions/setup-dotnet@v2
+  #       with:
+  #         dotnet-version: 6.0.x
 
-      - name: Install MAUI Workload
-        run: dotnet workload install maui --ignore-failed-sources
+  #     - name: Install MAUI Workload
+  #       run: dotnet workload install maui --ignore-failed-sources
 
-      - name: Restore Dependencies
-        run: dotnet restore
+  #     - name: Restore Dependencies
+  #       run: dotnet restore
 
-      - name: Build MAUI Windows
-        run: dotnet publish  Nick.DesignPatterns.mobile/Nick.DesignPatterns.mobile.csproj -c Release -f net6.0-windows10.0.17763.0 --no-restore
+  #     - name: Build MAUI Windows
+  #       run: dotnet publish  Nick.DesignPatterns.mobile/Nick.DesignPatterns.mobile.csproj -c Release -f net6.0-windows10.0.17763.0 --no-restore
 
-      - name: Upload Windows Artifact
-        uses: actions/upload-artifact@v3.1.0
-        with:
-          name: design-patterns-windows-ci-build
-          path: |
-            ./**/*.msix
+  #     - name: Upload Windows Artifact
+  #       uses: actions/upload-artifact@v3.1.0
+  #       with:
+  #         name: design-patterns-windows-ci-build
+  #         path: |
+  #           ./**/*.msix
 
  #iOS Build
   build-mac:
